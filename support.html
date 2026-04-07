@@ -215,7 +215,7 @@
     <div class="sidebar-section">
       <div class="sidebar-title">Contact</div>
       <a href="#contact" class="sidebar-link">Send a message</a>
-      <a href="/cdn-cgi/l/email-protection#55262025253a272115213a373c7b342525" class="sidebar-link"><span class="__cf_email__" data-cfemail="582b2d2828372a2c182c373a3176392828">[email&#160;protected]</span></a>
+      <span class="email-addr"></span>
     </div>
   </aside>
 
@@ -593,11 +593,17 @@
   <span>
     <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
     <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
-    <a href="/cdn-cgi/l/email-protection#d6a5a3a6a6b9a4a296a2b9b4bff8b7a6a6"><span class="__cf_email__" data-cfemail="d7a4a2a7a7b8a5a397a3b8b5bef9b6a7a7">[email&#160;protected]</span></a>
+    <span class="email-addr"></span>
   </span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+// ── Email ────────────────────────────────────────────────────────────────────
+const _e = 'ancillary.d3v' + '@' + 'gmail.com';
+document.querySelectorAll('.email-addr').forEach(el => {
+  el.innerHTML = '<a href="mailto:' + _e + '">' + _e + '</a>';
+});
+
 // ── Accordion ────────────────────────────────────────────────────────────────
 function toggle(btn) {
   const isOpen = btn.classList.contains('open');
