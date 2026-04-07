@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ancillary.dev LLC — Independent App Studio</title>
+  <meta name="description" content="Ancillary.dev LLC is an independent app studio building tools that reimagine how people experience stories." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #0d0d0d;
+      --surface: #141414;
+      --border:  #222;
+      --accent:  #e8433a;
+      --text:    #f0ebe0;
+      --muted:   #555;
+      --faint:   #1a1a1a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Grid overlay ────────────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      z-index: 100;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 10vw, 140px);
+      line-height: 0.95;
+      letter-spacing: 4px;
+      color: var(--text);
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-sub {
+      margin-top: 32px;
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--muted);
+      max-width: 520px;
+      font-weight: 300;
+      line-height: 1.7;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    .hero-cta {
+      margin-top: 48px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.7s 0.65s ease both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 0.5px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+
+    /* ── Divider line ─────────────────────────────────────────────────── */
+    .rule {
+      width: 1px;
+      height: 64px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+
+    /* ── Apps section ────────────────────────────────────────────────── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: 3px;
+      color: var(--text);
+      margin-bottom: 48px;
+    }
+
+    /* ── App card ────────────────────────────────────────────────────── */
+    .app-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--faint);
+      transition: border-color 0.3s;
+    }
+
+    .app-card:hover { border-color: var(--accent); }
+
+    .app-card-visual {
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      border-right: 0.5px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated kanji backdrop */
+    .app-card-visual::before {
+      content: '飛';
+      font-family: serif;
+      font-size: 200px;
+      color: var(--accent);
+      opacity: 0.04;
+      position: absolute;
+      user-select: none;
+    }
+
+    .app-icon {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
+      color: var(--accent);
+      letter-spacing: -2px;
+      position: relative;
+      z-index: 1;
+      line-height: 1;
+    }
+
+    .app-icon-sub {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 6px;
+      text-align: center;
+      margin-top: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-card-content {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .app-status {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 0.5px solid var(--accent);
+      padding: 4px 10px;
+      border-radius: 2px;
+      width: fit-content;
+    }
+
+    .app-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      letter-spacing: 4px;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .app-name span { color: var(--accent); }
+
+    .app-tagline {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .app-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+      max-width: 380px;
+    }
+
+    .app-features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .app-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .app-feature::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── About section ───────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    .about-body p + p { margin-top: 20px; }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .stat {
+      padding: 24px 28px;
+      background: var(--faint);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .stat:last-child { border-bottom: none; }
+
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── Contact ─────────────────────────────────────────────────────── */
+    .contact-box {
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      padding: 48px;
+      background: var(--faint);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .contact-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+
+    .contact-email {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 2px;
+      color: var(--text);
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 0.5px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--muted);
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    /* ── Animations ──────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      section { padding: 64px 24px; }
+      .hero { padding: 100px 24px 64px; }
+
+      .app-card { grid-template-columns: 1fr; }
+      .app-card-visual { min-height: 200px; border-right: none; border-bottom: 0.5px solid var(--border); }
+      .app-card-content { padding: 32px 24px; }
+
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-box { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-logo">Ancillary<span>.</span>dev</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <p class="hero-eyebrow">Independent App Studio · Est. 2025</p>
+    <h1 class="hero-title">Ancillary<span>.</span>dev</h1>
+    <p class="hero-sub">
+      We build apps that reimagine how people experience stories.
+      Small studio. Big ideas. Shipped with care.
+    </p>
+    <div class="hero-cta">
+      <a href="#apps" class="btn btn-primary">Our Apps</a>
+      <a href="#about" class="btn btn-secondary">About the Studio</a>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- Apps -->
+  <section id="apps">
+    <p class="section-label">What we make</p>
+    <h2 class="section-title">Our Apps</h2>
+
+    <div class="app-card reveal">
+      <div class="app-card-visual">
+        <div>
+          <div class="app-icon">TOBI飛</div>
+          <div class="app-icon-sub">とび · to fly</div>
+        </div>
+      </div>
+      <div class="app-card-content">
+        <span class="app-status">Coming Soon · iOS</span>
+        <div class="app-name">TOBI<span>飛</span></div>
+        <div class="app-tagline">Your stories take flight</div>
+        <p class="app-desc">
+          Transform any ebook into an AI-generated manga graphic novel.
+          Import a classic, choose an art style, and read it as a
+          beautifully illustrated panel-by-panel experience.
+        </p>
+        <div class="app-features">
+          <div class="app-feature">AI-generated manga panels from any EPUB or PDF</div>
+          <div class="app-feature">Character consistency across every scene</div>
+          <div class="app-feature">70,000+ free classics from Project Gutenberg</div>
+          <div class="app-feature">Multiple art styles — Noir, Akira, Junji Ito & more</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <p class="section-label">Who we are</p>
+    <h2 class="section-title">About the Studio</h2>
+    <div class="about-grid">
+      <div class="about-body reveal">
+        <p>
+          Ancillary.dev LLC is an independent app studio focused on
+          building tools that sit at the intersection of literature,
+          art, and technology. We're a small operation — which means
+          every product we ship gets our full attention.
+        </p>
+        <p>
+          We believe the best apps are the ones that feel inevitable —
+          like they should have always existed. Tobi is our first
+          attempt at that feeling: turning the books you love into
+          something you've never been able to see before.
+        </p>
+        <p>
+          More apps are in development. We build slowly and
+          deliberately, and we ship when things are ready.
+        </p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat">
+          <div class="stat-value">2025</div>
+          <div class="stat-label">Founded</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">WY</div>
+          <div class="stat-label">Registered · Wyoming LLC</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1</div>
+          <div class="stat-label">App in development</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">∞</div>
+          <div class="stat-label">Stories left to tell</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-box reveal">
+      <div>
+        <div class="contact-label">Business inquiries</div>
+        <div class="contact-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dcb4b9b0b0b39cbdb2bfb5b0b0bdaea5f2b8b9aa">[email&#160;protected]</a></div>
+      </div>
+      <a href="/cdn-cgi/l/email-protection#82eae7eeeeedc2e3ece1ebeeeee3f0fbace6e7f4" class="btn btn-primary">Send a message</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">Ancillary<span>.</span>dev <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:1px;">LLC</span></div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="support.html">Support</a>
+    </div>
+    <div class="footer-copy">© 2025 Ancillary.dev LLC. All rights reserved.</div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) =>

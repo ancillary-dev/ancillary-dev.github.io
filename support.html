@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Support — Tobi</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0d0d0d;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border:  #1e1e1e;
+    --border2: #2a2a2a;
+    --accent:  #e8433a;
+    --text:    #f0ebe0;
+    --muted:   #888780;
+    --faint:   #444441;
+    --green:   #1D9E75;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 0.5px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 3px; color: var(--text); text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .logo-sub { font-size: 10px; color: var(--faint); letter-spacing: 2px; margin-top: 2px; }
+
+  nav { display: flex; gap: 20px; }
+  nav a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.5px; }
+  nav a:hover { color: var(--accent); }
+
+  /* ── Hero ── */
+  .hero {
+    border-bottom: 0.5px solid var(--border);
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .hero-eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--accent); margin-bottom: 8px; }
+  .hero-title   { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 3px; margin-bottom: 10px; }
+  .hero-sub     { font-size: 14px; color: var(--muted); max-width: 480px; margin: 0 auto 28px; }
+
+  .search-wrap { max-width: 440px; margin: 0 auto; position: relative; }
+  .search-input {
+    width: 100%;
+    background: var(--surface);
+    border: 0.5px solid var(--border2);
+    border-radius: 4px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--faint); }
+
+  /* ── Layout ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 0 40px 80px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start; }
+
+  /* ── Sidebar ── */
+  .sidebar { position: sticky; top: 32px; padding-top: 40px; }
+  .sidebar-section { margin-bottom: 28px; }
+  .sidebar-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--faint); margin-bottom: 10px; }
+  .sidebar-link { display: block; font-size: 13px; color: var(--muted); text-decoration: none; padding: 4px 0; border-left: 2px solid transparent; padding-left: 10px; margin-left: -10px; transition: all 0.15s; }
+  .sidebar-link:hover, .sidebar-link.active { color: var(--text); border-left-color: var(--accent); }
+
+  /* ── Content ── */
+  .content { padding-top: 40px; }
+
+  .faq-section { margin-bottom: 48px; }
+  .section-label { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 16px; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; margin-bottom: 20px; }
+
+  /* ── Accordion ── */
+  .accordion { border: 0.5px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+  .accordion-q {
+    width: 100%; text-align: left; background: var(--surface);
+    border: none; padding: 14px 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--text); transition: background 0.15s;
+  }
+  .accordion-q:hover { background: var(--surface2); }
+  .accordion-q.open  { border-bottom: 0.5px solid var(--border); }
+  .accordion-chevron { font-size: 16px; color: var(--faint); transition: transform 0.2s; flex-shrink: 0; }
+  .accordion-q.open .accordion-chevron { transform: rotate(90deg); }
+  .accordion-a {
+    display: none; padding: 14px 18px;
+    font-size: 13px; color: var(--muted); line-height: 1.75;
+    background: var(--bg);
+  }
+  .accordion-a.open { display: block; }
+  .accordion-a a { color: var(--accent); text-decoration: none; }
+  .accordion-a a:hover { text-decoration: underline; }
+  .accordion-a strong { color: var(--text); font-weight: 500; }
+  .accordion-a ul { padding-left: 18px; margin: 8px 0; }
+  .accordion-a li { margin-bottom: 5px; }
+
+  /* ── Inline tip ── */
+  .tip { background: var(--surface); border-left: 2px solid var(--green); border-radius: 0 4px 4px 0; padding: 10px 14px; margin: 10px 0; font-size: 12px; color: var(--muted); }
+  .tip strong { color: var(--green); }
+
+  /* ── Contact form ── */
+  .contact-section { padding-top: 48px; border-top: 0.5px solid var(--border); }
+  .form-group { margin-bottom: 16px; }
+  label { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  input[type="text"], input[type="email"], select, textarea {
+    width: 100%; background: var(--surface); border: 0.5px solid var(--border2);
+    border-radius: 4px; padding: 11px 14px; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none;
+    transition: border-color 0.15s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  input::placeholder, textarea::placeholder { color: var(--faint); }
+  select { appearance: none; cursor: pointer; }
+  select option { background: var(--surface2); }
+  textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .submit-btn {
+    background: var(--accent); border: none; border-radius: 3px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 3px;
+    color: #fff; padding: 13px 32px; cursor: pointer;
+    transition: opacity 0.15s; margin-top: 4px;
+  }
+  .submit-btn:hover { opacity: 0.88; }
+  .submit-btn:disabled { opacity: 0.4; cursor: default; }
+
+  .form-note { font-size: 11px; color: var(--faint); margin-top: 10px; }
+
+  /* ── Success state ── */
+  .success-msg {
+    display: none; background: rgba(29,158,117,0.08);
+    border: 0.5px solid rgba(29,158,117,0.25); border-radius: 6px;
+    padding: 16px 20px; font-size: 13px; color: var(--green); margin-top: 16px;
+  }
+
+  /* ── Status cards ── */
+  .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .status-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 4px; padding: 12px 14px; }
+  .status-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--faint); margin-bottom: 4px; }
+  .status-val   { font-size: 13px; font-weight: 500; color: var(--green); }
+
+  /* ── Footer ── */
+  footer { border-top: 0.5px solid var(--border); padding: 20px 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 11px; color: var(--faint); }
+  footer a { color: var(--faint); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    header { padding: 18px 20px; }
+    .hero { padding: 36px 20px; }
+    .page { grid-template-columns: 1fr; gap: 0; padding: 0 20px 60px; }
+    .sidebar { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 16px 20px; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <a href="/" class="logo">TOBI<span>飛</span></a>
+    <div class="logo-sub">飛び — your stories take flight</div>
+  </div>
+  <nav>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="support.html">Support</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-eyebrow">Help Centre</div>
+  <div class="hero-title">How can we help?</div>
+  <p class="hero-sub">Find answers below or send us a message — we typically respond within 24 hours.</p>
+  <div class="search-wrap">
+    <input class="search-input" type="text" placeholder="Search for answers..." id="searchInput" oninput="filterFaq(this.value)"/>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- Sidebar navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Topics</div>
+      <a href="#importing"     class="sidebar-link">Importing books</a>
+      <a href="#converting"    class="sidebar-link">Converting</a>
+      <a href="#panels"        class="sidebar-link">Panels & quality</a>
+      <a href="#subscriptions" class="sidebar-link">Subscriptions</a>
+      <a href="#technical"     class="sidebar-link">Technical issues</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Contact</div>
+      <a href="#contact" class="sidebar-link">Send a message</a>
+      <a href="/cdn-cgi/l/email-protection#1d6e686d6d726f695d69727f74337c6d6d" class="sidebar-link"><span class="__cf_email__" data-cfemail="51222421213e232511253e33387f302121">[email&#160;protected]</span></a>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="content">
+
+    <!-- ── Importing books ── -->
+    <div class="faq-section" id="importing">
+      <div class="section-label">Getting started</div>
+      <div class="section-title">Importing books</div>
+
+      <div class="accordion" data-keywords="import epub pdf drm files icloud">
+        <button class="accordion-q" onclick="toggle(this)">
+          What file types does Tobi support?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Tobi supports <strong>EPUB</strong> and <strong>PDF</strong> files that are DRM-free. Most ebooks you buy from Kindle or Apple Books have DRM protection and cannot be imported — the file will appear to open but Tobi won't be able to read the text inside.
+          <div class="tip"><strong>Recommended:</strong> Use the built-in <strong>Get Books</strong> tab to download from Project Gutenberg — 70,000 public domain classics, always DRM-free.</div>
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="drm kindle apple books copy protection">
+        <button class="accordion-q" onclick="toggle(this)">
+          Why can't I import my Kindle or Apple Books purchase?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Books purchased from Kindle, Apple Books, Kobo, and most major retailers include DRM (Digital Rights Management) copy protection. This prevents any app other than the official reader from accessing the text — including Tobi.<br/><br/>
+          DRM-free alternatives:
+          <ul>
+            <li><a href="https://standardebooks.org" target="_blank">Standard Ebooks</a> — free, beautifully formatted public domain books</li>
+            <li><a href="https://smashwords.com" target="_blank">Smashwords</a> — indie authors who sell DRM-free</li>
+            <li><a href="https://humblebundle.com" target="_blank">Humble Bundle</a> — frequent book bundles, always DRM-free</li>
+            <li><a href="https://tor.com" target="_blank">Tor Books</a> — major sci-fi/fantasy publisher, DRM-free</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="import icloud drive files airdrop how where find">
+        <button class="accordion-q" onclick="toggle(this)">
+          How do I get a book file onto my iPad?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Several ways work well:
+          <ul>
+            <li><strong>AirDrop from Mac:</strong> Right-click the EPUB file on your Mac → Share → AirDrop → your iPad. The file arrives in Files → On My iPad → Downloads.</li>
+            <li><strong>iCloud Drive:</strong> Save the file to your iCloud Drive on any device. It syncs to your iPad automatically. Open Tobi → Import → Browse Files → iCloud Drive.</li>
+            <li><strong>Email attachment:</strong> Email the EPUB to yourself, open the attachment on iPad, tap Share → Copy to Tobi.</li>
+            <li><strong>Safari download:</strong> Download directly in Safari. The file appears in the Downloads folder in Files.</li>
+          </ul>
+          Once the file is anywhere in the Files app, tap <strong>Import</strong> in Tobi's Library screen to browse to it.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="share open with copy tobi send">
+        <button class="accordion-q" onclick="toggle(this)">
+          Can I open a file directly into Tobi from another app?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Yes — Tobi registers as a handler for EPUB and PDF files on your iPad. From any app that supports sharing (Safari, Mail, Files, Dropbox, Google Drive), tap the Share button, then tap <strong>Open in Tobi</strong>. The book will be imported automatically and you'll see a confirmation.
+          <div class="tip"><strong>Note:</strong> If "Open in Tobi" doesn't appear, scroll right in the share sheet to find it, or tap "More" to enable it.</div>
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="duplicate already imported same book twice">
+        <button class="accordion-q" onclick="toggle(this)">
+          I imported the same book twice by accident. How do I remove one?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Long-press any book card in your Library to reveal the delete option. This removes it from your library and frees the storage space on your device. Generated panels are unaffected — if you've already converted the book, the conversion is still available.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Converting ── -->
+    <div class="faq-section" id="converting">
+      <div class="section-label">Generation</div>
+      <div class="section-title">Converting</div>
+
+      <div class="accordion" data-keywords="how long time convert generation slow wait">
+        <button class="accordion-q" onclick="toggle(this)">
+          How long does a conversion take?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Chapter 1 is typically ready within <strong>60–90 seconds</strong>. You'll receive a notification when it's ready to read. The remaining chapters generate in the background while you read — by the time you finish chapter 1, chapter 2 is usually already done.<br/><br/>
+          Total conversion time for a full novel is typically 8–15 minutes, but you don't need to wait for it — reading starts at 90 seconds.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="style custom akira berserk junji ito type write">
+        <button class="accordion-q" onclick="toggle(this)">
+          Can I use a custom art style that isn't in the presets?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Yes. The style input field accepts any text description you can imagine. Try things like:
+          <ul>
+            <li>"Watercolour with ink outlines, Studio Ghibli palette"</li>
+            <li>"Soviet propaganda poster style, bold geometric shapes"</li>
+            <li>"Ukiyo-e woodblock print, traditional Japanese colours"</li>
+            <li>"80s Heavy Metal magazine illustration, detailed crosshatching"</li>
+          </ul>
+          The more specific you are, the more consistent the results. The preset styles are just starting points — the real power is in the freeform field.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="same book different style convert again how many">
+        <button class="accordion-q" onclick="toggle(this)">
+          Can I convert the same book in multiple styles?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Yes — up to <strong>5 different styles</strong> per book on the Pro and Lifetime plans. Each style creates a separate graphic novel version in your library. The free tier allows 1 style for your 1 free conversion.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="cancel stop conversion generating in progress">
+        <button class="accordion-q" onclick="toggle(this)">
+          Can I cancel a conversion that's in progress?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          You can navigate away from the progress screen at any time — generation continues in the background. To fully stop a conversion in progress, force-quit the app. Note that any panels already generated will be lost and the conversion will need to be restarted.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="monthly limit panels budget reached reset when">
+        <button class="accordion-q" onclick="toggle(this)">
+          I've hit my monthly panel limit. When does it reset?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Monthly panel budgets reset on the <strong>1st of each calendar month</strong>. You can see how many panels you have remaining this month in <strong>Settings → Subscription</strong>.<br/><br/>
+          Pro subscribers get 160 panels/month (~2 full books). Lifetime subscribers get 600 panels/month (~7 full books). As the community cache grows over time, cached panels don't reduce your budget — so in practice you'll get more books per month as the app matures.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Panels & quality ── -->
+    <div class="faq-section" id="panels">
+      <div class="section-label">Output quality</div>
+      <div class="section-title">Panels &amp; quality</div>
+
+      <div class="accordion" data-keywords="character looks wrong different inconsistent face">
+        <button class="accordion-q" onclick="toggle(this)">
+          A character looks different between panels. Is that a bug?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Tobi builds a character consistency profile from the full text of your book before generating any panels. For most books this works very well — characters maintain consistent faces, hair, and clothing across the conversion.<br/><br/>
+          Occasional variation can happen when:
+          <ul>
+            <li>A character appears very rarely and is described vaguely in the source text</li>
+            <li>The book has a very large cast of secondary characters</li>
+            <li>The source PDF was scanned or image-based (text extraction is limited)</li>
+          </ul>
+          If you notice significant inconsistency, try converting again — the AI generation process has natural variation and a second attempt often produces better results.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="panels blank empty white black failed generation error">
+        <button class="accordion-q" onclick="toggle(this)">
+          Some panels are blank or didn't generate. What happened?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Blank panels usually indicate that a scene was too short or abstract for the AI to generate a meaningful image from — philosophical passages, internal monologue, or very short transitional scenes sometimes produce this. It is also occasionally caused by a temporary API timeout during generation.<br/><br/>
+          To fix: long-press the book card → Regenerate. This will only regenerate the missing panels, not the whole book.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="pdf scanned image based text not working extraction">
+        <button class="accordion-q" onclick="toggle(this)">
+          My PDF isn't converting properly — why?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Tobi reads the <strong>text layer</strong> of PDF files. If your PDF is a scanned image (a photo of a physical book), there is no text layer and Tobi cannot extract the content.<br/><br/>
+          Check your PDF: try selecting text in it. If you can't select text, it's image-based and Tobi cannot convert it. <strong>EPUB format</strong> almost always works better — if a book is available in both formats, choose EPUB.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="quality improve bad panels looks wrong style not right">
+        <button class="accordion-q" onclick="toggle(this)">
+          The panels don't look how I expected. Can I improve them?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          The biggest impact comes from being more specific in your style description. Instead of "manga style", try "black and white manga with heavy ink lines, dramatic shadows, close-up character expressions, cinematic panel composition". The AI responds very well to detailed, specific prompts.<br/><br/>
+          You can also try the <strong>Berserk skin</strong> for darker, more detailed linework, or the <strong>Sakura skin</strong> for softer, more colourful output.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Subscriptions ── -->
+    <div class="faq-section" id="subscriptions">
+      <div class="section-label">Billing</div>
+      <div class="section-title">Subscriptions</div>
+
+      <div class="accordion" data-keywords="cancel subscription pro how to stop billing">
+        <button class="accordion-q" onclick="toggle(this)">
+          How do I cancel my Pro subscription?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          All subscriptions are managed by Apple — Tobi doesn't handle billing directly. To cancel:
+          <ol style="padding-left:18px; margin-top:8px;">
+            <li>Open <strong>Settings</strong> on your iPad</li>
+            <li>Tap your name at the top</li>
+            <li>Tap <strong>Subscriptions</strong></li>
+            <li>Tap <strong>Tobi Pro</strong></li>
+            <li>Tap <strong>Cancel Subscription</strong></li>
+          </ol>
+          <div class="tip">Cancellation takes effect at the end of your current billing period. You keep Pro access until then — no partial refunds are issued for unused time.</div>
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="refund charge money back billing apple">
+        <button class="accordion-q" onclick="toggle(this)">
+          How do I request a refund?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Refunds are handled by Apple directly. Visit <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a>, sign in with your Apple ID, find the Tobi purchase, and submit a refund request. Apple typically responds within 48 hours.<br/><br/>
+          If you have a billing concern you'd like us to be aware of, please contact us below and we'll do our best to help.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="restore purchases new ipad lost bought already">
+        <button class="accordion-q" onclick="toggle(this)">
+          I got a new iPad. How do I restore my purchases?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Open Tobi on your new iPad, go to <strong>Settings</strong>, and tap <strong>Restore Purchases</strong>. Sign in with the same Apple ID you used when you originally purchased and your Pro subscription or Lifetime plan will be restored automatically.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="lifetime worth difference pro vs one time payment">
+        <button class="accordion-q" onclick="toggle(this)">
+          What's the difference between Pro and Lifetime?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          <strong>Pro ($4.99/month)</strong> gives you 160 panels/month and all skins unlocked, billed monthly and cancelable at any time.<br/><br/>
+          <strong>Lifetime ($29.99 once)</strong> gives you 600 panels/month and all skins, forever, with a single one-time payment. It pays for itself after 6 months of Pro.<br/><br/>
+          Both tiers benefit from the community cache — as more users generate panels, your effective output per month increases because cached panels don't count against your generation budget.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Technical issues ── -->
+    <div class="faq-section" id="technical">
+      <div class="section-label">Troubleshooting</div>
+      <div class="section-title">Technical issues</div>
+
+      <div class="accordion" data-keywords="crash app not working error opening force quit">
+        <button class="accordion-q" onclick="toggle(this)">
+          Tobi keeps crashing or freezing. What should I do?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Try these steps in order:
+          <ol style="padding-left:18px; margin-top:8px;">
+            <li>Force-quit Tobi and reopen it (swipe up from the bottom, swipe Tobi off screen)</li>
+            <li>Check for an app update in the App Store</li>
+            <li>Restart your iPad (hold power + volume button)</li>
+            <li>Check that you have at least 1GB of free storage (Settings → General → iPad Storage)</li>
+          </ol>
+          If the crash is reproducible, please contact us below with details of what you were doing when it occurred — this helps us fix it quickly.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="offline no internet connection wifi works without">
+        <button class="accordion-q" onclick="toggle(this)">
+          Does Tobi work offline?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Your library and already-converted graphic novels are available offline — you can read them without an internet connection. <strong>Converting a new book requires internet</strong> as it uses AI services to generate the panels.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="storage space how much size files taking up">
+        <button class="accordion-q" onclick="toggle(this)">
+          How much storage space does Tobi use?
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          The app itself is small (~50MB). Each converted graphic novel takes approximately <strong>15–20MB</strong> depending on the number of chapters and the image quality of the selected style. A library of 10 converted books uses roughly 150–200MB total.
+        </div>
+      </div>
+
+      <div class="accordion" data-keywords="notification not working push alerts chapter ready">
+        <button class="accordion-q" onclick="toggle(this)">
+          I'm not getting notifications when my chapter is ready.
+          <span class="accordion-chevron">›</span>
+        </button>
+        <div class="accordion-a">
+          Check that notifications are enabled for Tobi:
+          <ol style="padding-left:18px; margin-top:8px;">
+            <li>Open <strong>Settings</strong> on your iPad</li>
+            <li>Scroll down and tap <strong>Tobi</strong></li>
+            <li>Tap <strong>Notifications</strong> and make sure they're enabled</li>
+          </ol>
+          If notifications are already enabled and still not arriving, force-quit Tobi and reopen it, then try a new conversion.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Contact form ── -->
+    <div class="contact-section" id="contact">
+      <div class="section-label">Get in touch</div>
+      <div class="section-title">Send us a message</div>
+      <p style="color:var(--muted);font-size:13px;margin-bottom:24px;">
+        Can't find an answer above? We typically respond within 24 hours.
+        For billing issues, include your Apple ID email so we can look up your account.
+      </p>
+
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Alex Smith" required/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="alex@example.com" required/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="topic">What's this about?</label>
+          <select id="topic" name="topic" required>
+            <option value="" disabled selected>Select a topic…</option>
+            <option value="importing">Importing books</option>
+            <option value="converting">Converting / generation</option>
+            <option value="quality">Panel quality</option>
+            <option value="billing">Subscription or billing</option>
+            <option value="technical">Technical issue / crash</option>
+            <option value="feature">Feature request</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="device">iPad model (optional)</label>
+          <input type="text" id="device" name="device" placeholder="e.g. iPad Pro 12.9&quot; M2"/>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Describe what happened, what you expected, and any steps we can take to reproduce the issue…" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Send message →</button>
+        <p class="form-note">We'll reply to the email address above. Response time is typically within 24 hours.</p>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        ✓ Message sent — we'll get back to you within 24 hours at the email address you provided.
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /page -->
+
+<footer>
+  <span>© 2025 [Your Name]. All rights reserved.</span>
+  <span>
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="/cdn-cgi/l/email-protection#5724222727382523172338353e79362727"><span class="__cf_email__" data-cfemail="a9dadcd9d9c6dbdde9ddc6cbc087c8d9d9">[email&#160;protected]</span></a>
+  </span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Accordion ────────────────────────────────────────────────────────────────
+function toggle(btn) {
+  const isOpen = btn.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.accordion-q.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  // Open clicked if it was closed
+  if (!isOpen) {
+    btn.classList.add('open');
+    btn.nextElementSibling.classList.add('open');
+  }
+}
+
+// ── Search / filter ──────────────────────────────────────────────────────────
+function filterFaq(query) {
+  const q = query.toLowerCase().trim();
+  document.querySelectorAll('.accordion').forEach(acc => {
+    const keywords = acc.dataset.keywords || '';
+    const text     = acc.innerText.toLowerCase();
+    const visible  = !q || keywords.includes(q) || text.includes(q);
+    acc.style.display = visible ? '' : 'none';
+  });
+
+  // Show/hide section titles if all accordions are hidden
+  document.querySelectorAll('.faq-section').forEach(section => {
+    const visible = [...section.querySelectorAll('.accordion')]
+      .some(a => a.style.display !== 'none');
+    section.style.display = visible ? '' : 'none';
+  });
+}
+
+// ── Sidebar active state ─────────────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const id   = entry.target.id;
+    const link = document.querySelector(`.sidebar-link[href="#${id}"]`);
+    if (link) link.classList.toggle('active', entry.isIntersecting);
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+document.querySelectorAll('.faq-section, .contact-section').forEach(s => observer.observe(s));
+
+// ── Contact form ─────────────────────────────────────────────────────────────
+// Replace the action URL below with your form handler.
+// Recommended: Formspree (formspree.io) — free tier handles 50 submissions/month.
+// 1. Create a form at formspree.io
+// 2. Replace YOUR_FORM_ID below with the ID they give you
+// 3. Done — submissions arrive in your email inbox
+
+const FORMSPREE_ID = 'YOUR_FORM_ID'; // ← replace this
+
+async function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const form = document.getElementById('contactForm');
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      body:   data,
+      headers: { Accept: 'application/json' },
+    });
+
+    if (
