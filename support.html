@@ -655,22 +655,6 @@ document.querySelectorAll('.faq-section, .contact-section').forEach(s => observe
 // 2. Replace YOUR_FORM_ID below with the ID they give you
 // 3. Done — submissions arrive in your email inbox
 
-const FORMSPREE_ID = 'YOUR_FORM_ID'; // ← replace this
-
-async function submitForm(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Sending...';
-
-  const form = document.getElementById('contactForm');
-  const data = new FormData(form);
-
-  try {
-    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-      method: 'POST',
-      body:   data,
-      headers: { Accept: 'application/json' },
-    });
-
-    if (
+</script>
+</body>
+</html>
