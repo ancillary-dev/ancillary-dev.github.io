@@ -1,385 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support — Tobi</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --black: #0f0f0f;
-      --white: #fafafa;
-      --gray: #6b6b6b;
-      --light: #f2f2f0;
-      --accent: #e8403a;
-      --border: #e0e0dc;
-      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    }
-    body { font-family: var(--sans); background: var(--white); color: var(--black); line-height: 1.6; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Support — Tobi</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
-    .nav-logo { font-size: 18px; font-weight: 700; letter-spacing: -0.5px; color: var(--black); text-decoration: none; }
-    .nav-links { display: flex; gap: 24px; }
-    .nav-links a { font-size: 14px; color: var(--gray); }
-    .nav-links a:hover { color: var(--black); text-decoration: none; }
+  :root {
+    --bg:      #0d0d0d;
+    --surface: #141414;
+    --border:  #1e1e1e;
+    --accent:  #e8433a;
+    --text:    #f0ebe0;
+    --muted:   #888780;
+    --faint:   #444441;
+  }
 
-    /* HERO */
-    .support-hero { padding: 64px 48px 48px; border-bottom: 1px solid var(--border); }
-    .page-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
-    .support-hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
-    .support-hero p { font-size: 16px; color: var(--gray); }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.75; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-    /* TOPIC NAV */
-    .topic-nav { padding: 24px 48px; border-bottom: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; }
-    .topic-pill { display: inline-block; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); font-size: 13px; color: var(--gray); cursor: pointer; text-decoration: none; }
-    .topic-pill:hover { background: var(--light); color: var(--black); text-decoration: none; }
+  header { border-bottom: 0.5px solid var(--border); padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--text); text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .logo-sub { font-family: 'Noto Serif JP', serif; font-size: 11px; color: var(--faint); letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a { font-size: 13px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; text-decoration: none; }
+  .nav-links a:hover { color: var(--accent); }
 
-    /* FAQ SECTIONS */
-    .faq-section { padding: 48px; border-bottom: 1px solid var(--border); max-width: 800px; }
-    .faq-section h2 { font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; }
-    .faq-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 24px; }
+  .support-hero { padding: 64px 40px 48px; border-bottom: 0.5px solid var(--border); }
+  .page-label { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--accent); margin-bottom: 8px; }
+  .support-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 52px); letter-spacing: 3px; color: var(--text); margin-bottom: 8px; line-height: 1; }
+  .support-hero p { font-size: 14px; color: var(--muted); }
 
-    details { border-bottom: 1px solid var(--border); }
-    details:last-child { border-bottom: none; }
-    summary { font-size: 15px; font-weight: 600; padding: 18px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: '›'; font-size: 20px; color: var(--gray); transition: transform 0.2s; }
-    details[open] summary::after { transform: rotate(90deg); }
-    .faq-body { padding: 0 0 20px; font-size: 15px; color: #444; line-height: 1.75; }
-    .faq-body p { margin-bottom: 12px; }
-    .faq-body p:last-child { margin-bottom: 0; }
-    .faq-body ul { margin: 8px 0 12px 20px; }
-    .faq-body ul li { margin-bottom: 6px; }
-    .faq-body ol { margin: 8px 0 12px 20px; }
-    .faq-body ol li { margin-bottom: 6px; }
-    .faq-body strong { color: var(--black); }
+  .topic-nav { padding: 20px 40px; border-bottom: 0.5px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; }
+  .topic-pill { font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 2px; display: inline-block; padding: 6px 14px; border: 0.5px solid var(--faint); border-radius: 2px; color: var(--muted); text-decoration: none; }
+  .topic-pill:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
-    /* TIER TABLE */
-    .tier-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
-    .tier-table th { text-align: left; padding: 8px 12px; background: var(--light); font-weight: 600; font-size: 13px; border-bottom: 2px solid var(--border); }
-    .tier-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-    .tier-table tr:last-child td { border-bottom: none; }
+  .faq-section { padding: 48px 40px; border-bottom: 0.5px solid var(--border); max-width: 800px; }
+  .faq-section-label { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--accent); margin-bottom: 8px; }
+  .faq-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--text); margin-bottom: 24px; line-height: 1; }
 
-    /* CONTACT SECTION */
-    .contact-section { padding: 48px; }
-    .contact-section h2 { font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; }
-    .contact-section h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .contact-section p { font-size: 15px; color: var(--gray); margin-bottom: 32px; }
-    .contact-email-block { background: var(--light); border-radius: 10px; padding: 24px 28px; display: inline-block; }
-    .contact-email-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
-    .contact-email-value { font-size: 20px; font-weight: 700; }
-    .contact-email-value a { color: var(--black); }
-    .contact-note { font-size: 13px; color: var(--gray); margin-top: 12px; }
+  details { border-bottom: 0.5px solid var(--border); }
+  details:last-child { border-bottom: none; }
+  summary { font-size: 14px; font-weight: 500; color: var(--text); padding: 18px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-size: 18px; color: var(--faint); flex-shrink: 0; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0; }
+  details[open] summary::after { content: '−'; color: var(--accent); }
+  .faq-body { padding: 0 0 20px; font-size: 14px; color: var(--muted); line-height: 1.75; }
+  .faq-body p { margin-bottom: 12px; color: var(--muted); font-size: 14px; }
+  .faq-body p:last-child { margin-bottom: 0; }
+  .faq-body ul { margin: 8px 0 12px 20px; }
+  .faq-body ul li { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+  .faq-body ol { margin: 8px 0 12px 20px; }
+  .faq-body ol li { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+  .faq-body strong { color: var(--text); font-weight: 500; }
+  .faq-body a { color: var(--accent); }
 
-    footer { padding: 32px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-    .footer-copy { font-size: 13px; color: var(--gray); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 13px; color: var(--gray); }
-    .footer-links a:hover { color: var(--black); text-decoration: none; }
+  .tier-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  .tier-table th { text-align: left; padding: 8px 12px; background: var(--surface); font-weight: 500; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--faint); border-bottom: 0.5px solid var(--border); }
+  .tier-table td { padding: 10px 12px; border-bottom: 0.5px solid var(--border); color: var(--muted); vertical-align: top; }
+  .tier-table td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+  .tier-table tr:last-child td { border-bottom: none; }
 
-    @media (max-width: 600px) {
-      nav, .support-hero, .topic-nav, .faq-section, .contact-section, footer { padding-left: 24px; padding-right: 24px; }
-    }
-  </style>
+  .contact-section { padding: 48px 40px; }
+  .contact-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--text); margin-bottom: 8px; line-height: 1; }
+  .contact-section p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+  .contact-email-block { background: var(--surface); border: 0.5px solid var(--border); border-radius: 4px; padding: 24px 28px; display: inline-block; }
+  .contact-email-label { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
+  .contact-email-value { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
+  .contact-email-value a { color: var(--text); }
+  .contact-email-value a:hover { color: var(--accent); text-decoration: none; }
+  .contact-note { font-size: 12px; color: var(--faint); margin-top: 10px; }
+
+  footer { border-top: 0.5px solid var(--border); padding: 24px 40px; font-size: 12px; color: var(--faint); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  footer a { color: var(--faint); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    header, .support-hero, .topic-nav, .faq-section, .contact-section, footer { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="nav-logo">TOBI飛</a>
-    <div class="nav-links">
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/support.html">Support</a>
+<header>
+  <div>
+    <a href="/" class="logo">TOBI<span>飛</span></a>
+    <div class="logo-sub">飛び — your stories take flight</div>
+  </div>
+  <div class="nav-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="support.html">Support</a>
+  </div>
+</header>
+
+<div class="support-hero">
+  <p class="page-label">Help Centre</p>
+  <h1>How can we help?</h1>
+  <p>Find answers below or email us — we typically respond within 24 hours.</p>
+</div>
+
+<div class="topic-nav">
+  <a href="#importing" class="topic-pill">Importing Books</a>
+  <a href="#converting" class="topic-pill">Converting</a>
+  <a href="#panels" class="topic-pill">Panels &amp; Quality</a>
+  <a href="#subscriptions" class="topic-pill">Subscriptions</a>
+  <a href="#technical" class="topic-pill">Technical Issues</a>
+  <a href="#contact" class="topic-pill">Contact</a>
+</div>
+
+<!-- IMPORTING -->
+<div class="faq-section" id="importing">
+  <p class="faq-section-label">Getting started</p>
+  <h3>Importing Books</h3>
+
+  <details>
+    <summary>What file types does Tobi support?</summary>
+    <div class="faq-body">
+      <p>Tobi supports <strong>EPUB</strong> and <strong>PDF</strong> files that are DRM-free. Most ebooks you buy from Kindle or Apple Books have DRM protection and cannot be imported — the file will appear to open but Tobi won't be able to read the text inside.</p>
+      <p><strong>Recommended:</strong> Use the built-in <strong>Get Books</strong> tab to download from Project Gutenberg — 70,000 public domain classics, always DRM-free.</p>
     </div>
-  </nav>
+  </details>
 
-  <div class="support-hero">
-    <p class="page-label">Help Centre</p>
-    <h1>How can we help?</h1>
-    <p>Find answers below or email us — we typically respond within 24 hours.</p>
-  </div>
-
-  <div class="topic-nav">
-    <a href="#importing" class="topic-pill">Importing books</a>
-    <a href="#converting" class="topic-pill">Converting</a>
-    <a href="#panels" class="topic-pill">Panels &amp; quality</a>
-    <a href="#subscriptions" class="topic-pill">Subscriptions</a>
-    <a href="#technical" class="topic-pill">Technical issues</a>
-    <a href="#contact" class="topic-pill">Contact</a>
-  </div>
-
-  <!-- IMPORTING -->
-  <div class="faq-section" id="importing">
-    <h2>Getting started</h2>
-    <h3>Importing books</h3>
-
-    <details>
-      <summary>What file types does Tobi support?</summary>
-      <div class="faq-body">
-        <p>Tobi supports <strong>EPUB</strong> and <strong>PDF</strong> files that are DRM-free. Most ebooks you buy from Kindle or Apple Books have DRM protection and cannot be imported — the file will appear to open but Tobi won't be able to read the text inside.</p>
-        <p><strong>Recommended:</strong> Use the built-in <strong>Get Books</strong> tab to download from Project Gutenberg — 70,000 public domain classics, always DRM-free.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Why can't I import my Kindle or Apple Books purchase?</summary>
-      <div class="faq-body">
-        <p>Books purchased from Kindle, Apple Books, Kobo, and most major retailers include DRM (Digital Rights Management) copy protection. This prevents any app other than the official reader from accessing the text — including Tobi.</p>
-        <p>DRM-free alternatives:</p>
-        <ul>
-          <li><a href="https://standardebooks.org">Standard Ebooks</a> — free, beautifully formatted public domain books</li>
-          <li><a href="https://smashwords.com">Smashwords</a> — indie authors who sell DRM-free</li>
-          <li><a href="https://humblebundle.com">Humble Bundle</a> — frequent book bundles, always DRM-free</li>
-          <li><a href="https://tor.com">Tor Books</a> — major sci-fi/fantasy publisher, DRM-free</li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>How do I get a book file onto my iPad?</summary>
-      <div class="faq-body">
-        <p>Several ways work well:</p>
-        <ul>
-          <li><strong>AirDrop from Mac:</strong> Right-click the EPUB file on your Mac → Share → AirDrop → your iPad.</li>
-          <li><strong>iCloud Drive:</strong> Save the file to your iCloud Drive on any device. It syncs to your iPad automatically. Open Tobi → Import → Browse Files → iCloud Drive.</li>
-          <li><strong>Email attachment:</strong> Email the EPUB to yourself, open the attachment on iPad, tap Share → Copy to Tobi.</li>
-          <li><strong>Safari download:</strong> Download directly in Safari. The file appears in the Downloads folder in Files.</li>
-        </ul>
-        <p>Once the file is anywhere in the Files app, tap <strong>Import</strong> in Tobi's Library screen to browse to it.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Can I open a file directly into Tobi from another app?</summary>
-      <div class="faq-body">
-        <p>Yes — Tobi registers as a handler for EPUB and PDF files on your iPad. From any app that supports sharing (Safari, Mail, Files, Dropbox, Google Drive), tap the Share button, then tap <strong>Open in Tobi</strong>. The book will be imported automatically.</p>
-        <p><strong>Note:</strong> If "Open in Tobi" doesn't appear, scroll right in the share sheet to find it, or tap "More" to enable it.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>I imported the same book twice by accident. How do I remove one?</summary>
-      <div class="faq-body">
-        <p>Long-press any book card in your Library to reveal the delete option. This removes it from your library and frees storage space on your device. Generated panels are unaffected — if you've already converted the book, the conversion is still available.</p>
-      </div>
-    </details>
-  </div>
-
-  <!-- CONVERTING -->
-  <div class="faq-section" id="converting">
-    <h2>Generation</h2>
-    <h3>Converting</h3>
-
-    <details>
-      <summary>How long does a conversion take?</summary>
-      <div class="faq-body">
-        <p>The first chapter is typically ready within <strong>60–90 seconds</strong>. You'll receive a notification when it's ready to read. Remaining chapters generate in the background while you read — by the time you finish chapter 1, chapter 2 is usually already done.</p>
-        <p>Total conversion time for a full novel is typically 8–15 minutes, but you don't need to wait — reading starts at 90 seconds.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>What art styles are available?</summary>
-      <div class="faq-body">
-        <p>Tobi includes 8 preset art styles: <strong>Akira, Grimoire, Horror, Sci-fi, Shonen, Noir, Romance,</strong> and <strong>Epic</strong>. The style input field also accepts any freeform text description you can imagine. Try things like:</p>
-        <ul>
-          <li>"Watercolour with ink outlines, Studio Ghibli palette"</li>
-          <li>"Soviet propaganda poster style, bold geometric shapes"</li>
-          <li>"Ukiyo-e woodblock print, traditional Japanese colours"</li>
-        </ul>
-        <p>The more specific you are, the more consistent the results.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Can I convert the same book in multiple styles?</summary>
-      <div class="faq-body">
-        <p>Yes — each conversion uses one of your monthly conversion slots. Pro subscribers get 5 conversions per month and Lifetime subscribers get 10, so you can convert the same book in different styles within your monthly allowance.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Can I cancel a conversion that's in progress?</summary>
-      <div class="faq-body">
-        <p>You can navigate away from the progress screen at any time — generation continues in the background. To fully stop a conversion in progress, force-quit the app. Note that any panels already generated will be lost and the conversion will need to be restarted.</p>
-      </div>
-    </details>
-  </div>
-
-  <!-- PANELS -->
-  <div class="faq-section" id="panels">
-    <h2>Output quality</h2>
-    <h3>Panels &amp; quality</h3>
-
-    <details>
-      <summary>A character looks different between panels. Is that a bug?</summary>
-      <div class="faq-body">
-        <p>Tobi builds a character consistency profile from the full text of your book before generating any panels. For most books this works very well — characters maintain consistent faces, hair, and clothing across the conversion.</p>
-        <p>Occasional variation can happen when a character appears very rarely, is described vaguely in the source text, or the book has a very large cast. If you notice significant inconsistency, try converting again — a second attempt often produces better results.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Some panels are blank or didn't generate. What happened?</summary>
-      <div class="faq-body">
-        <p>Blank panels usually indicate that a scene was too short or abstract for the AI to generate a meaningful image from — philosophical passages, internal monologue, or very short transitional scenes sometimes produce this. It is also occasionally caused by a temporary API timeout during generation.</p>
-        <p>To fix: long-press the book card → Regenerate. This will only regenerate the missing panels, not the whole book.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>My PDF isn't converting properly — why?</summary>
-      <div class="faq-body">
-        <p>Tobi reads the <strong>text layer</strong> of PDF files. If your PDF is a scanned image (a photo of a physical book), there is no text layer and Tobi cannot extract the content.</p>
-        <p>Check your PDF: try selecting text in it. If you can't select text, it's image-based and Tobi cannot convert it. <strong>EPUB format</strong> almost always works better — if a book is available in both formats, choose EPUB.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>The panels don't look how I expected. Can I improve them?</summary>
-      <div class="faq-body">
-        <p>The biggest impact comes from being more specific in your style description. Instead of "manga style", try "black and white manga with heavy ink lines, dramatic shadows, close-up character expressions, cinematic panel composition". The AI responds very well to detailed, specific prompts.</p>
-      </div>
-    </details>
-  </div>
-
-  <!-- SUBSCRIPTIONS -->
-  <div class="faq-section" id="subscriptions">
-    <h2>Billing</h2>
-    <h3>Subscriptions</h3>
-
-    <details>
-      <summary>What are the subscription tiers?</summary>
-      <div class="faq-body">
-        <table class="tier-table">
-          <thead>
-            <tr><th>Tier</th><th>Price</th><th>What you get</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Free</strong></td>
-              <td>$0</td>
-              <td>Read featured community conversions on the Explore screen.</td>
-            </tr>
-            <tr>
-              <td><strong>Reader</strong></td>
-              <td>$1.99/month</td>
-              <td>Access all cached community conversions.</td>
-            </tr>
-            <tr>
-              <td><strong>Pro</strong></td>
-              <td>$9.99/month</td>
-              <td>5 personal book conversions per month, up to ~150 panels per conversion.</td>
-            </tr>
-            <tr>
-              <td><strong>Lifetime</strong></td>
-              <td>$49.99 once</td>
-              <td>10 conversions per month, unlimited panels. One-time payment, no subscription.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </details>
-
-    <details>
-      <summary>How do I cancel my subscription?</summary>
-      <div class="faq-body">
-        <p>All subscriptions are managed by Apple — Tobi doesn't handle billing directly. To cancel:</p>
-        <ol>
-          <li>Open <strong>Settings</strong> on your iPad</li>
-          <li>Tap your name at the top</li>
-          <li>Tap <strong>Subscriptions</strong></li>
-          <li>Tap <strong>Tobi</strong></li>
-          <li>Tap <strong>Cancel Subscription</strong></li>
-        </ol>
-        <p>Cancellation takes effect at the end of your current billing period. You keep access until then — no partial refunds are issued for unused time.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>How do I request a refund?</summary>
-      <div class="faq-body">
-        <p>Refunds are handled by Apple directly. Visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, sign in with your Apple ID, find the Tobi purchase, and submit a refund request. Apple typically responds within 48 hours.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>I got a new iPad. How do I restore my purchases?</summary>
-      <div class="faq-body">
-        <p>Open Tobi on your new iPad, go to <strong>Settings</strong>, and tap <strong>Restore Purchases</strong>. Sign in with the same Apple ID you used originally and your subscription or Lifetime plan will be restored automatically.</p>
-      </div>
-    </details>
-  </div>
-
-  <!-- TECHNICAL -->
-  <div class="faq-section" id="technical">
-    <h2>Troubleshooting</h2>
-    <h3>Technical issues</h3>
-
-    <details>
-      <summary>Tobi keeps crashing or freezing. What should I do?</summary>
-      <div class="faq-body">
-        <p>Try these steps in order:</p>
-        <ol>
-          <li>Force-quit Tobi and reopen it (swipe up from the bottom, swipe Tobi off screen)</li>
-          <li>Check for an app update in the App Store</li>
-          <li>Restart your iPad (hold power + volume button)</li>
-          <li>Check that you have at least 1GB of free storage (Settings → General → iPad Storage)</li>
-        </ol>
-        <p>If the crash is reproducible, please <a href="mailto:support@ancillarydev.com">contact us</a> with details of what you were doing — this helps us fix it quickly.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Does Tobi work offline?</summary>
-      <div class="faq-body">
-        <p>Your library and already-converted graphic novels are available offline — you can read them without an internet connection. <strong>Converting a new book requires internet</strong> as it uses AI services to generate the panels.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>How much storage space does Tobi use?</summary>
-      <div class="faq-body">
-        <p>The app itself is small (~50MB). Each converted graphic novel takes approximately <strong>15–20MB</strong> depending on the number of chapters and the image quality of the selected style. A library of 10 converted books uses roughly 150–200MB total.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>I'm not getting notifications when my chapter is ready.</summary>
-      <div class="faq-body">
-        <p>Check that notifications are enabled for Tobi:</p>
-        <ol>
-          <li>Open <strong>Settings</strong> on your iPad</li>
-          <li>Scroll down and tap <strong>Tobi</strong></li>
-          <li>Tap <strong>Notifications</strong> and make sure they're enabled</li>
-        </ol>
-        <p>If notifications are already enabled and still not arriving, force-quit Tobi and reopen it, then try a new conversion.</p>
-      </div>
-    </details>
-  </div>
-
-  <!-- CONTACT -->
-  <div class="contact-section" id="contact">
-    <h2>Get in touch</h2>
-    <h3>Still need help?</h3>
-    <p>Can't find an answer above? Email us and we'll get back to you within 24 hours.</p>
-    <div class="contact-email-block">
-      <div class="contact-email-label">Support email</div>
-      <div class="contact-email-value"><a href="mailto:support@ancillarydev.com">support@ancillarydev.com</a></div>
-      <div class="contact-note">For billing issues, include your Apple ID email so we can look up your account.</div>
+  <details>
+    <summary>Why can't I import my Kindle or Apple Books purchase?</summary>
+    <div class="faq-body">
+      <p>Books purchased from Kindle, Apple Books, Kobo, and most major retailers include DRM (Digital Rights Management) copy protection. This prevents any app other than the official reader from accessing the text — including Tobi.</p>
+      <p>DRM-free alternatives:</p>
+      <ul>
+        <li><a href="https://standardebooks.org" target="_blank">Standard Ebooks</a> — free, beautifully formatted public domain books</li>
+        <li><a href="https://smashwords.com" target="_blank">Smashwords</a> — indie authors who sell DRM-free</li>
+        <li><a href="https://humblebundle.com" target="_blank">Humble Bundle</a> — frequent book bundles, always DRM-free</li>
+        <li><a href="https://tor.com" target="_blank">Tor Books</a> — major sci-fi/fantasy publisher, DRM-free</li>
+      </ul>
     </div>
-  </div>
+  </details>
 
-  <footer>
-    <span class="footer-copy">© 2026 Ancillary.dev LLC. All rights reserved.</span>
-    <div class="footer-links">
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/terms.html">Terms of Service</a>
-      <a href="/support.html">Support</a>
+  <details>
+    <summary>How do I get a book file onto my iPad?</summary>
+    <div class="faq-body">
+      <ul>
+        <li><strong>AirDrop from Mac:</strong> Right-click the EPUB file on your Mac → Share → AirDrop → your iPad.</li>
+        <li><strong>iCloud Drive:</strong> Save the file to iCloud Drive on any device. Open Tobi → Import → Browse Files → iCloud Drive.</li>
+        <li><strong>Email attachment:</strong> Email the EPUB to yourself, open the attachment on iPad, tap Share → Copy to Tobi.</li>
+        <li><strong>Safari download:</strong> Download directly in Safari — the file appears in Files → Downloads.</li>
+      </ul>
     </div>
-  </footer>
+  </details>
 
+  <details>
+    <summary>Can I open a file directly into Tobi from another app?</summary>
+    <div class="faq-body">
+      <p>Yes — Tobi registers as a handler for EPUB and PDF files on your iPad. From any app that supports sharing (Safari, Mail, Files, Dropbox), tap the Share button, then tap <strong>Open in Tobi</strong>.</p>
+      <p><strong>Note:</strong> If "Open in Tobi" doesn't appear, scroll right in the share sheet or tap "More" to enable it.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>I imported the same book twice. How do I remove one?</summary>
+    <div class="faq-body">
+      <p>Long-press any book card in your Library to reveal the delete option. This removes it from your library and frees storage on your device. Any existing conversions are unaffected.</p>
+    </div>
+  </details>
+</div>
+
+<!-- CONVERTING -->
+<div class="faq-section" id="converting">
+  <p class="faq-section-label">Generation</p>
+  <h3>Converting</h3>
+
+  <details>
+    <summary>How long does a conversion take?</summary>
+    <div class="faq-body">
+      <p>The first chapter is typically ready within <strong>60–90 seconds</strong>. Remaining chapters generate in the background while you read — by the time you finish chapter 1, chapter 2 is usually already done.</p>
+      <p>Total conversion time for a full novel is typically 8–15 minutes, but you don't need to wait — reading starts immediately after the first chapter.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What art styles are available?</summary>
+    <div class="faq-body">
+      <p>Tobi includes 8 preset styles: <strong>Akira, Grimoire, Horror, Sci-fi, Shonen, Noir, Romance,</strong> and <strong>Epic</strong>. The style input also accepts any freeform description. Try things like:</p>
+      <ul>
+        <li>"Watercolour with ink outlines, Studio Ghibli palette"</li>
+        <li>"Soviet propaganda poster style, bold geometric shapes"</li>
+        <li>"Ukiyo-e woodblock print, traditional Japanese colours"</li>
+      </ul>
+      <p>The more specific you are, the more consistent the results.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Can I convert the same book in multiple styles?</summary>
+    <div class="faq-body">
+      <p>Yes — each conversion uses one of your monthly slots. Pro subscribers get 5 conversions per month and Lifetime subscribers get 10, so you can convert the same book in different styles within your monthly allowance.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Can I cancel a conversion in progress?</summary>
+    <div class="faq-body">
+      <p>You can navigate away from the progress screen at any time — generation continues in the background. To fully stop a conversion, force-quit the app. Any panels already generated will be lost and the conversion will need to be restarted.</p>
+    </div>
+  </details>
+</div>
+
+<!-- PANELS -->
+<div class="faq-section" id="panels">
+  <p class="faq-section-label">Output quality</p>
+  <h3>Panels &amp; Quality</h3>
+
+  <details>
+    <summary>A character looks different between panels. Is that a bug?</summary>
+    <div class="faq-body">
+      <p>Tobi builds a character consistency profile from the full text of your book before generating any panels. For most books this works very well. Occasional variation can happen when a character appears rarely or is described vaguely. Try converting again — a second attempt often produces better results.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Some panels are blank or didn't generate. What happened?</summary>
+    <div class="faq-body">
+      <p>Blank panels usually indicate that a scene was too short or abstract for the AI to generate a meaningful image — philosophical passages or very short transitional scenes sometimes produce this. It can also be caused by a temporary API timeout.</p>
+      <p>To fix: long-press the book card → Regenerate. This will only regenerate the missing panels.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>My PDF isn't converting properly — why?</summary>
+    <div class="faq-body">
+      <p>Tobi reads the <strong>text layer</strong> of PDF files. If your PDF is a scanned image (a photo of a physical book), there is no text layer and Tobi cannot extract the content. Try selecting text in your PDF — if you can't, it's image-based. <strong>EPUB format</strong> works better whenever available.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The panels don't look how I expected. Can I improve them?</summary>
+    <div class="faq-body">
+      <p>The biggest impact comes from a more specific style description. Instead of "manga style", try "black and white manga with heavy ink lines, dramatic shadows, close-up character expressions, cinematic panel composition".</p>
+    </div>
+  </details>
+</div>
+
+<!-- SUBSCRIPTIONS -->
+<div class="faq-section" id="subscriptions">
+  <p class="faq-section-label">Billing</p>
+  <h3>Subscriptions</h3>
+
+  <details>
+    <summary>What are the subscription tiers?</summary>
+    <div class="faq-body">
+      <table class="tier-table">
+        <thead><tr><th>Tier</th><th>Price</th><th>What you get</th></tr></thead>
+        <tbody>
+          <tr><td>Free</td><td>$0</td><td>Read featured community conversions on the Explore screen.</td></tr>
+          <tr><td>Reader</td><td>$1.99/month</td><td>Access all cached community conversions.</td></tr>
+          <tr><td>Pro</td><td>$9.99/month</td><td>5 personal book conversions per month, up to ~150 panels per conversion.</td></tr>
+          <tr><td>Lifetime</td><td>$49.99 once</td><td>10 conversions per month, unlimited panels. One-time payment.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <details>
+    <summary>How do I cancel my subscription?</summary>
+    <div class="faq-body">
+      <p>All subscriptions are managed by Apple. To cancel:</p>
+      <ol>
+        <li>Open <strong>Settings</strong> on your iPad</li>
+        <li>Tap your name at the top</li>
+        <li>Tap <strong>Subscriptions</strong></li>
+        <li>Tap <strong>Tobi</strong> → <strong>Cancel Subscription</strong></li>
+      </ol>
+      <p>Cancellation takes effect at the end of your current billing period.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How do I request a refund?</summary>
+    <div class="faq-body">
+      <p>Refunds are handled by Apple directly. Visit <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a>, sign in with your Apple ID, find the Tobi purchase, and submit a refund request.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>I got a new iPad. How do I restore my purchases?</summary>
+    <div class="faq-body">
+      <p>Open Tobi on your new iPad, go to <strong>Settings</strong>, and tap <strong>Restore Purchases</strong>. Sign in with the same Apple ID you used originally.</p>
+    </div>
+  </details>
+</div>
+
+<!-- TECHNICAL -->
+<div class="faq-section" id="technical">
+  <p class="faq-section-label">Troubleshooting</p>
+  <h3>Technical Issues</h3>
+
+  <details>
+    <summary>Tobi keeps crashing or freezing. What should I do?</summary>
+    <div class="faq-body">
+      <ol>
+        <li>Force-quit Tobi and reopen it (swipe up from the bottom, swipe Tobi off screen)</li>
+        <li>Check for an app update in the App Store</li>
+        <li>Restart your iPad (hold power + volume button)</li>
+        <li>Check that you have at least 1GB of free storage (Settings → General → iPad Storage)</li>
+      </ol>
+      <p>If the crash is reproducible, please <span class="contact-inline"></span> with details — this helps us fix it quickly.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Does Tobi work offline?</summary>
+    <div class="faq-body">
+      <p>Your library and already-converted graphic novels are available offline. <strong>Converting a new book requires internet</strong> as it uses AI services to generate the panels.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How much storage space does Tobi use?</summary>
+    <div class="faq-body">
+      <p>The app itself is small (~50MB). Each converted graphic novel takes approximately <strong>15–20MB</strong>. A library of 10 converted books uses roughly 150–200MB total.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>I'm not getting notifications when my chapter is ready.</summary>
+    <div class="faq-body">
+      <ol>
+        <li>Open <strong>Settings</strong> on your iPad</li>
+        <li>Scroll down and tap <strong>Tobi</strong></li>
+        <li>Tap <strong>Notifications</strong> and make sure they're enabled</li>
+      </ol>
+    </div>
+  </details>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <p class="page-label">Get in touch</p>
+  <h3>Still need help?</h3>
+  <p>Can't find an answer above? Email us and we'll get back to you within 24 hours. For billing issues, include your Apple ID email.</p>
+  <div class="contact-email-block">
+    <div class="contact-email-label">Support Email</div>
+    <div class="contact-email-value"><span class="email-addr"></span></div>
+    <div class="contact-note">Response time is typically within 24 hours.</div>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Ancillary.dev LLC. All rights reserved.</div>
+  <div>
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="support.html">Support</a>
+  </div>
+</footer>
+
+<script>
+  const _e = 'support' + '@' + 'ancillarydev.com';
+  document.querySelectorAll('.email-addr').forEach(el => {
+    el.innerHTML = '<a href="mailto:' + _e + '">' + _e + '</a>';
+  });
+  document.querySelectorAll('.contact-inline').forEach(el => {
+    el.innerHTML = '<a href="mailto:' + _e + '" style="color:var(--accent)">email us</a>';
+  });
+</script>
 </body>
 </html>
