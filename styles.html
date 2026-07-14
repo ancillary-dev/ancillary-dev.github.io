@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Art Styles — Tobi</title>
+<meta name="description" content="Every one of Tobi's 24 manga art styles, from classic shonen to painterly ukiyo-e. Pick the voice that fits the book you want to read."/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0d0d0d;
+    --surface: #141414;
+    --border:  #1e1e1e;
+    --accent:  #e8433a;
+    --text:    #f0ebe0;
+    --muted:   #888780;
+    --faint:   #444441;
+  }
+
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.75; }
+
+  header { border-bottom: 0.5px solid var(--border); padding: 28px 40px; display: flex; align-items: center; gap: 16px; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--text); text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .logo-sub { font-family: 'Noto Serif JP', serif; font-size: 11px; color: var(--faint); letter-spacing: 2px; }
+
+  main { max-width: 900px; margin: 0 auto; padding: 60px 40px 120px; }
+
+  .doc-type { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--accent); margin-bottom: 8px; text-align: center; }
+  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 3px; text-align: center; margin-bottom: 16px; }
+  .page-intro { text-align: center; color: var(--muted); max-width: 640px; margin: 0 auto 64px; }
+
+  /* Mood group headers */
+  .mood-group { margin-top: 64px; margin-bottom: 32px; }
+  .mood-group:first-of-type { margin-top: 0; }
+  .mood-header { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 4px; color: var(--accent); border-top: 0.5px solid var(--border); padding-top: 32px; margin-bottom: 24px; }
+
+  /* Style card */
+  .style { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; padding: 32px; margin-bottom: 20px; display: grid; grid-template-columns: 160px 1fr; gap: 32px; align-items: start; scroll-margin-top: 24px; }
+  .style:target { border-color: var(--accent); }
+  .style .sample { width: 160px; aspect-ratio: 2/3; background: #1a1a1e; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--faint); font-family: 'Noto Serif JP', serif; font-size: 36px; }
+  .style .body h3 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 6px; }
+  .style .body .mood { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 16px; }
+  .style .body p { color: var(--muted); line-height: 1.7; }
+
+  /* Back link */
+  .back { display: block; text-align: center; margin-bottom: 40px; }
+  .back a { color: var(--accent); text-decoration: none; font-size: 13px; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+
+  /* Footer */
+  footer { border-top: 0.5px solid var(--border); padding: 40px; text-align: center; color: var(--muted); font-size: 13px; }
+  footer a { color: var(--muted); text-decoration: none; margin: 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+  footer a:hover { color: var(--text); border-color: var(--accent); }
+  .footer-brand { font-family: 'Noto Serif JP', serif; color: var(--faint); font-size: 11px; letter-spacing: 2px; margin-top: 20px; }
+
+  @media (max-width: 640px) {
+    header { padding: 20px 24px; }
+    main { padding: 48px 24px 80px; }
+    .page-title { font-size: 36px; }
+    .style { grid-template-columns: 1fr; padding: 24px; gap: 20px; }
+    .style .sample { width: 100%; aspect-ratio: 3/2; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">TOB<span>I</span></a>
+  <span class="logo-sub">飛</span>
+</header>
+
+<main>
+  <div class="doc-type">✦ ART STYLES ✦</div>
+  <h1 class="page-title">Twenty-four voices.</h1>
+  <p class="page-intro">
+    Each style has its own vocabulary &mdash; palette, line quality, tone, atmosphere. Pick the voice that fits the book you want to read. Sample panels shown are placeholders until launch.
+  </p>
+  <div class="back"><a href="/">&larr; Back to home</a></div>
+
+  <!-- ── Action & Energy ── -->
+  <div class="mood-group">
+    <div class="mood-header">Action &amp; Energy</div>
+
+    <div class="style" id="akira">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Akira</h3>
+        <div class="mood">CYBERPUNK · NEON · ACTION</div>
+        <p>Cyberpunk manga in the tradition of neon-drenched near-future cities. Detailed linework, vivid electric colors, dynamic action lines, and cinematic lighting that pulls you into rain-slick streets and glowing skylines.</p>
+      </div>
+    </div>
+
+    <div class="style" id="shonen">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Shonen</h3>
+        <div class="mood">CLASSIC · HEROIC · ENERGETIC</div>
+        <p>Classic shonen manga energy: vibrant bold colors, dynamic action lines, expressive faces, clean bold linework. Perfect for heroic quests, martial-arts epics, and coming-of-age adventures with big feelings and bigger stakes.</p>
+      </div>
+    </div>
+
+    <div class="style" id="mecha">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Mecha</h3>
+        <div class="mood">HARD-SURFACE · INDUSTRIAL · SCI-FI</div>
+        <p>Mecha manga with hard-surface mechanical detail, polished chrome surfaces, and signal-red accents. Intricate linework and dramatic scale suit stories of pilots, giant machines, and industrial sci-fi cathedrals.</p>
+      </div>
+    </div>
+
+    <div class="style" id="goldenage">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Golden Age</h3>
+        <div class="mood">PULP · VINTAGE · FOUR-COLOR</div>
+        <p>Golden Age American comic style with bold primary colors, halftone dot shading, and heavy black outlines. The vintage four-color print look of classic pulp adventures &mdash; capes, cowboys, and daring rescues.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Dark & Moody ── -->
+  <div class="mood-group">
+    <div class="mood-header">Dark &amp; Moody</div>
+
+    <div class="style" id="grimoire">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Grimoire</h3>
+        <div class="mood">DARK FANTASY · OCCULT · GOTHIC</div>
+        <p>Dark fantasy manga with heavy inking and dramatic crosshatching. Rich jewel-tone shadows and gritty atmosphere suit occult mysteries, gothic tragedies, and stories with a slow-burning dread underneath.</p>
+      </div>
+    </div>
+
+    <div class="style" id="horror">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Horror</h3>
+        <div class="mood">PSYCHOLOGICAL · UNSETTLING · MENACING</div>
+        <p>Psychological horror manga with desaturated palettes broken by sharp red accents. Intricate detail and an unsettling atmosphere for tales of dread, obsession, and quiet menace that never quite leaves the page.</p>
+      </div>
+    </div>
+
+    <div class="style" id="noir">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Noir</h3>
+        <div class="mood">CLASSIC NOIR · CINEMATIC · MOODY</div>
+        <p>Noir manga in stark black and white with golden amber accents. Dramatic shadows and cinematic angles cast every scene like a rain-slick city at 2 AM &mdash; ideal for detective stories, moral gray zones, and quiet desperation.</p>
+      </div>
+    </div>
+
+    <div class="style" id="noircolor">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Neo-Noir</h3>
+        <div class="mood">MODERN · CINEMATIC · TEAL &amp; ORANGE</div>
+        <p>Neo-noir with teal-and-orange color grading, deep cinematic shadows, and moody night atmosphere. Sleek modern rendering for contemporary crime dramas and thrillers with an edge.</p>
+      </div>
+    </div>
+
+    <div class="style" id="inkwash">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Ink Wash</h3>
+        <div class="mood">MONOCHROME · GESTURAL · LITERARY</div>
+        <p>Monochrome ink wash with expressive brush strokes, gray gradients, and high-contrast spotting. Raw gestural energy suits literary fiction, memoir, and stark graphic novels where mood does the talking.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Soft & Sweet ── -->
+  <div class="mood-group">
+    <div class="mood-header">Soft &amp; Sweet</div>
+
+    <div class="style" id="romance">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Romance</h3>
+        <div class="mood">SHOJO · PASTEL · EMOTIVE</div>
+        <p>Shojo manga in soft pastels with pink and lavender accents. Delicate linework and expressive emotions bring romance, courtship, and quiet longing to the fore.</p>
+      </div>
+    </div>
+
+    <div class="style" id="watercolor">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Watercolor</h3>
+        <div class="mood">TRANSLUCENT · GENTLE · AIRY</div>
+        <p>Watercolor illustration with soft translucent washes, bleeding pigment edges, and gentle pastel palette. Visible paper texture creates a light, airy atmosphere for gentle stories and dreamy passages.</p>
+      </div>
+    </div>
+
+    <div class="style" id="gouache">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Storybook</h3>
+        <div class="mood">GOUACHE · WARM · WHIMSICAL</div>
+        <p>Storybook gouache illustration with soft matte color and rounded gentle shapes. A warm inviting palette and hand-painted texture bring picture-book charm to any tale &mdash; fables, fairy stories, adventures for the young at heart.</p>
+      </div>
+    </div>
+
+    <div class="style" id="chibi">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Chibi</h3>
+        <div class="mood">SUPER-DEFORMED · PLAYFUL · COMEDIC</div>
+        <p>Chibi manga with super-deformed proportions, oversized heads and eyes, and bright candy colors. Thick rounded linework and playful comedic energy turn any book into a light adventure &mdash; classics reimagined with a wink.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Epic & Fantasy ── -->
+  <div class="mood-group">
+    <div class="mood-header">Epic &amp; Fantasy</div>
+
+    <div class="style" id="epic">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Epic</h3>
+        <div class="mood">HIGH FANTASY · SAGA · GRAND</div>
+        <p>Epic fantasy manga with rich warm colors and dramatic lighting. Detailed rendering suits sagas of heroes, gods, and kingdoms carved from myth &mdash; the register where everything matters and the stakes are always cosmic.</p>
+      </div>
+    </div>
+
+    <div class="style" id="xianxia">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Xianxia</h3>
+        <div class="mood">CULTIVATION · MYTHIC · PAINTERLY</div>
+        <p>Chinese xianxia manhua with jade greens, celestial blues, and ornate detail. Painterly digital rendering evokes mystical cultivation sagas, immortal romances, and misty mountaintops where the world runs on qi.</p>
+      </div>
+    </div>
+
+    <div class="style" id="donghua">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Donghua</h3>
+        <div class="mood">CINEMATIC · GOLDEN · DEPTH</div>
+        <p>Cinematic donghua with warm golden light, layered atmospheric depth, and semi-realistic faces. Rich color grading gives every scene the feel of a Chinese animated film still.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Clean & Modern ── -->
+  <div class="mood-group">
+    <div class="mood-header">Clean &amp; Modern</div>
+
+    <div class="style" id="scifi">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Sci-Fi</h3>
+        <div class="mood">RETRO SF · COOL PALETTE · CINEMATIC</div>
+        <p>Retro science fiction with a cool blue and purple palette, clean linework, and cinematic lighting. Ideal for classic space opera, techno-thrillers, and adventures set among the stars.</p>
+      </div>
+    </div>
+
+    <div class="style" id="webtoon">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Webtoon</h3>
+        <div class="mood">MANHWA · BRIGHT · GLOSSY</div>
+        <p>Full-color manhwa webtoon with soft digital cel shading and clean vector-like linework. A bright saturated palette and glossy modern rendering make every panel feel like a scroll ready to swipe.</p>
+      </div>
+    </div>
+
+    <div class="style" id="ligneclaire">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Ligne Claire</h3>
+        <div class="mood">EUROPEAN BD · CLEAN · READABLE</div>
+        <p>Ligne claire in the European bande dessinée tradition. Clean uniform linework, flat bright color fills, no hatching, and even lighting produce endlessly clear, readable compositions &mdash; adventure, exploration, quiet joy.</p>
+      </div>
+    </div>
+
+    <div class="style" id="seinen">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Seinen</h3>
+        <div class="mood">MATURE · NATURALISTIC · GROUNDED</div>
+        <p>Seinen manga with a muted naturalistic palette, fine detailed linework, and realistic proportions. Grounded and mature &mdash; subtle cinematic shading for character-driven, literary stories.</p>
+      </div>
+    </div>
+
+    <div class="style" id="vertigo">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Modern Vertigo</h3>
+        <div class="mood">INDIE · PAINTERLY · LITERARY</div>
+        <p>Modern indie graphic-novel style with a muted earthy palette, painterly textures, and naturalistic faces. Moody atmospheric lighting and a literary tone suit adult drama and slow-burn tension.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Artistic & Painterly ── -->
+  <div class="mood-group">
+    <div class="mood-header">Artistic &amp; Painterly</div>
+
+    <div class="style" id="ukiyoe">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Ukiyo-e</h3>
+        <div class="mood">WOODBLOCK · FLAT COLOR · EDO</div>
+        <p>Ukiyo-e woodblock print with flat layered color, bold outline contours, and muted natural pigments. Edo-period tradition brings a timeless dignity to any historical adaptation.</p>
+      </div>
+    </div>
+
+    <div class="style" id="artnouveau">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Art Nouveau</h3>
+        <div class="mood">ORNATE · ELEGANT · JEWEL TONES</div>
+        <p>Art Nouveau in the Mucha tradition: ornate flowing line, muted gold and jewel tones, and elegant flat figures. Stained-glass elegance for stories with grandeur, craft, and quiet ceremony.</p>
+      </div>
+    </div>
+
+    <div class="style" id="oilpaint">
+      <div class="sample">飛</div>
+      <div class="body">
+        <h3>Oil Painting</h3>
+        <div class="mood">OLD MASTER · CHIAROSCURO · IMPASTO</div>
+        <p>Classical oil painting with rich impasto texture, chiaroscuro lighting, and a deep warm palette. Old-master brushwork and dramatic atmosphere elevate epic and historical tales.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="back" style="margin-top: 48px;"><a href="/">&larr; Back to home</a></div>
+</main>
+
+<footer>
+  <div>
+    <a href="/styles.html">Styles</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/support.html">Support</a>
+  </div>
+  <div class="footer-brand">飛 &nbsp;·&nbsp; ANCILLARY DEV</div>
+</footer>
+
+</body>
+</html>
